@@ -34,7 +34,9 @@ const Basket = ({ match: { params: { areaId, itemId }}, foodAreas, order }) => {
     return [ accounting.formatNumber(result, 0, ' '), products ];
   }, [ order, item ]);
 
-  return (
+
+
+  return (    
     <div className="Place">
       <header className="Place__header">
         <aside className="Place__trz">
@@ -121,19 +123,19 @@ const Basket = ({ match: { params: { areaId, itemId }}, foodAreas, order }) => {
         </div>
         <div className="Place__choice-item">
           <span>Назначить</span>
-          <input type="date"
+          <input type="text"
             value={time}
             onFocus={() => {
               setFaster(false);
             }}
             onChange={event => {
-              setFaster(false);
-              if (/^(?:\d|[01]\d|2[0-3]):[0-5]\d$/.test(event.target.value)) {
-                setTime(event.target.value);
+              setTime(event.target.value)
+              if (/^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/.test(event.target.value)) {
+                setTime(event.target.value)
               } else {
-                setTime('')
-                setFaster(true)
+                setTime(null)
               }
+              setFaster(false);
             }}
             onBlur={() => {
               if (time) {
@@ -152,12 +154,13 @@ const Basket = ({ match: { params: { areaId, itemId }}, foodAreas, order }) => {
         </div>
       </div>
       <footer className="Place__footer">
-        <Link to={`/order/${area.id}/${item.id}`} className="Place__order">
+        <Link to={time !== null ? `/order/${area.id}/${item.id}` : `/basket/${area.id}/${item.id}`} className="Place__order">
           Оплатить {price}
         </Link>
       </footer>
     </div>
   );
 };
+
 
 export default withRouter(Basket);
