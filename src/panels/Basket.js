@@ -113,6 +113,7 @@ const Basket = ({ match: { params: { areaId, itemId }}, foodAreas, order }) => {
             checked={faster} 
             onToggle={() => {
               if (faster) {
+                setTime(null)
                 setFaster(false);
               } else {
                 setTime('');
@@ -123,7 +124,7 @@ const Basket = ({ match: { params: { areaId, itemId }}, foodAreas, order }) => {
         </div>
         <div className="Place__choice-item">
           <span>Назначить</span>
-          <input type="text"
+          <input style={{border: time == null ? "3px solid red" : "3px solid green"}} type="text"
             value={time}
             onFocus={() => {
               setFaster(false);
