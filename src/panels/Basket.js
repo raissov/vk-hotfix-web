@@ -130,7 +130,6 @@ const Basket = ({ match: { params: { areaId, itemId }}, foodAreas, order }) => {
               setFaster(false);
             }}
             onChange={event => {
-              setTime(event.target.value)
               if (/^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/.test(event.target.value)) {
                 setTime(event.target.value)
               } else {
