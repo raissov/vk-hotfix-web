@@ -105,6 +105,7 @@ const Place = ({ item, order, onIncrementPosition, onDecrementPosition, area }) 
           onClick={(e) => {
             if(price === "0"){
               e.preventDefault();
+              window.alert("Выберите хотя бы один товар!");
             }
           }} 
           to={`/basket/${area.id}/${item.id}`} className="Place__order">
